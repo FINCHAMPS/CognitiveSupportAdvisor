@@ -40,6 +40,21 @@
             textarea{
                 overflow-y: scroll;
             }
+            .button {
+                background-color:#D3D3D3;
+                border: grey;
+                color: black;
+                width: 200px;
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 12px;
+                border: 2px solid #555555;
+            }
         </style>
     </head>
     <body>
@@ -71,7 +86,7 @@
                     <tr>
                        <td colspan="2">
                            <input type="checkbox" name="checkbox" id="checkbox" value="checkbox">&nbsp;&nbsp; Select this solution if it helped resolve your problem.
-                        </td> 
+                        </td 
                     </tr> 
                     <tr>
                         <td style="width:20%"><h4>Error Code / Description:</h4></td>
@@ -93,11 +108,11 @@
         </fieldset>
         
             <% } %>
-            <div style="width:100%;height: 200px" align="center">
+            <div style="width:100%;height:100px;vertical-align:central;margin-top: 2em;text-align:center;">
                
-                <button type="">Add New</button>
-                <button type="">Search</button>
-                <button type="">Close</button>
+                <button class="button" type="">Add New</button>
+                <button class="button" type="">Search</button>
+                <button class="button" type="">Close</button>
                 
             </div>
         </form>
