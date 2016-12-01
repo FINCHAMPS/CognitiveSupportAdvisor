@@ -1,0 +1,10 @@
+applications:
+- path: CognitiveSupportAdvisor.war
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: FINCHAMPS WEBSERVER
+  host: FINCHAMPS-WEBSERVER
+  disk_quota: 1024M
+  services:
+  - FINCHAMPS WEBSERVER-cloudantNoSQLDB
