@@ -1,0 +1,17 @@
+{
+  "ServiceId": "com.ibm.cloudoe.orion.client.deploy",
+  "Params": {
+    "Target": {
+      "Url": "https://api.ng.bluemix.net",
+      "Org": "chasoman@in.ibm.com",
+      "Space": "devopstrainingcas1234"
+    },
+    "Name": "CognitiveSupportAdvisor",
+    "Instrumentation": {
+      "host": "CognitiveSupportAdvisor",
+      "services": []
+    }
+  },
+  "Path": "manifest.yml",
+  "Type": "Cloud Foundry"
+}
