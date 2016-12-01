@@ -27,13 +27,13 @@ public class MyService {
        String res = "";
         CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
-            HttpPost httpPost = new HttpPost("https://6a1787d3-4427-4397-9016-c08f5ca285d9:tqJMu4VtB6Se@gateway.watsonplatform.net/retrieve-and-rank/api/v1/solr_clusters/sccdd7250e_375c_41b6_aec1_8493851f91f3/solr/cognitivesupportassistant/fcselect?");
+            HttpPost httpPost = new HttpPost("https://a0319e47-dd55-49c6-b718-07f18ab92e0c:SYLem5HoMVBv@gateway.watsonplatform.net/retrieve-and-rank/api/v1/solr_clusters/sc52fc10f5_442e_4a9c_b771_eade20d72284/solr/cognitivesupportassistant/fcselect?");
             List <NameValuePair> nvps = new ArrayList <NameValuePair>();
             //nvps.add(new BasicNameValuePair("username", "6a1787d3-4427-4397-9016-c08f5ca285d9"));
             //nvps.add(new BasicNameValuePair("password", "tqJMu4VtB6Se"));
             //nvps.add(new BasicNameValuePair("solr_cluster_ID", "sccdd7250e_375c_41b6_aec1_8493851f91f3"));
             //nvps.add(new BasicNameValuePair("example_collection", "cognitivesupportassistant"));
-            nvps.add(new BasicNameValuePair("ranker_id", "54922ax21-rank-575"));
+            nvps.add(new BasicNameValuePair("ranker_id", "766366x22-rank-600"));
             nvps.add(new BasicNameValuePair("q", error));
             nvps.add(new BasicNameValuePair("wt", "jason"));
             nvps.add(new BasicNameValuePair("fl", "body"));
