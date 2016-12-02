@@ -58,7 +58,44 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             
           //  int len = js.getJSONObject("response").getJSONObject("result").getJSONArray("doc").length();
            
-             JSONArray jArray = js.getJSONObject("response").getJSONObject("result").getJSONArray("doc");
+            // JSONArray jArray = js.getJSONObject("response").getJSONObject("result").getJSONArray("doc"); // Commented by Chaitanya on 02/12/2016 to resolve single fetch issue
+            
+            // Added by Chaitanya - 12/06/2016 - To resolve single doc fetch issue
+            JSONArray jArray = null;
+            JSONObject responseJObj = js.getJSONObject("response");
+            if((responseJObj != null) 
+            		&& (responseJObj.has("result"))){
+            	
+            	JSONObject resultJObj = responseJObj.getJSONObject("result");
+            	
+            	if((resultJObj != null) 
+            			&& (resultJObj.has("doc"))){
+
+            		Object obj = resultJObj.get("doc");
+
+            		if(obj != null){
+
+            			if(obj instanceof JSONArray){
+
+            				jArray = (JSONArray)obj;
+            				
+			            }else{
+
+			            	if(obj instanceof JSONObject){
+
+			            		jArray = new JSONArray();
+			            		jArray.put(obj);
+			            	}
+			            } // else 
+		            } // if obj not null
+            	} // if resultObj
+            } // if responseObj
+            //Following code handles no solutions found scenario
+            if(jArray == null){
+            	jArray = new JSONArray();
+            	jArray.put(new JSONObject("{\"arr\":{\"str\":\"Your query did not yield any solutions. Please refine your search and try again.\",\"name\":\"body\"}}"));
+            }
+            // ----------------------------End of additions - Chaitanya - 02/12/2016
             
             out.println("<h1>Solutions<h1>");
             if(jArray!=null)
