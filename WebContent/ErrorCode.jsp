@@ -9,48 +9,35 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Error Code Page</title>
+        <title>Cognitive Support Advisor</title>
         
          <style>
          table, th , td {
-            border:3px solid grey;
+            border:0px solid grey;
             border-collapse: collapse;
             padding: 20px;
             margin: auto;
          }
          
-        
-         body{
-             background-color: lightblue;
-             background-image : url("main.jpeg");
-             
-         }
          h1{
              text-align: center;
          }
+        
       </style>
     </head>
     <body>
         <form action="LoginServlet" method="post">
+            <div style="height: 200px">
+            <img src="YB_New.png" style="margin-left: auto" alt="Bank Icon" width="" height="" align="left">
+            <img src="watson_small.png" style="margin-right: auto"  alt="Bank Icon" width="" height="" align="right">
+            </div>
         <div>
-            <h1>Welcome to Cognitive Support Advisor</h1>
+            <h1 style="color: blue"><font size="7">Cognitive Support Advisor</font></h1>
         </div>
-        <table>
-         <!--   <tr>
-                <td><b>Enter Error Code :</b></td>
-                <td><input style="width:200px;" type="text" name="errorCode" id="errorCodeId" value=""></td>
-            </tr> -->
             
+        <table>
             <tr>
-                <td align=""><b>Enter Error Code/Description :</b></td>
-                <td><textarea style="width:200px; height:200px;" name="errorCode" id="errorDescId"></textarea></td>
-            </tr>
-           
-            <tr>
-                <td colspan="2" align="center">
-                    <button type="submit" >Submit</button>
-                    <button type="reset">Cancel</button>
-                </td>
+                <td><input style="width: 800px;height:40px" type="text" name="errorCode"/>    <button style="padding: 10px 15px;"type="submit">Search</button></td>
             </tr>
          </table>
         </form>

@@ -38,38 +38,24 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         response.setContentType("text/html;charset=UTF-8");
         try {
             PrintWriter out = response.getWriter();
-           
             ErrorBean eb = new ErrorBean();
             eb.setError(String.valueOf(request.getParameter("errorCode")));
             
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
+            //MyService ms = new MyService();
             
-            MyService ms = new MyService();
-          
-            JSONObject js = XML.toJSONObject(ms.CallRRService( eb.getError()));
-          //  out.println("<p>"+ js.toString() +"</p>");
-            
-          //  out.println("<p> Fetching data From ArrayList </p>");
-            
-          //  int len = js.getJSONObject("response").getJSONObject("result").getJSONArray("doc").length();
+            MyServiceWithTitles mswt = new MyServiceWithTitles();
+            JSONObject js = XML.toJSONObject(mswt.CallRRService( eb.getError()));
            
             // JSONArray jArray = js.getJSONObject("response").getJSONObject("result").getJSONArray("doc"); // Commented by Chaitanya on 02/12/2016 to resolve single fetch issue
             
             // Added by Chaitanya - 12/06/2016 - To resolve single doc fetch issue
             JSONArray jArray = null;
             JSONObject responseJObj = js.getJSONObject("response");
-            if((responseJObj != null) 
-            		&& (responseJObj.has("result"))){
+            if((responseJObj != null) && (responseJObj.has("result"))){
             	
             	JSONObject resultJObj = responseJObj.getJSONObject("result");
             	
-            	if((resultJObj != null) 
-            			&& (resultJObj.has("doc"))){
+            	if((resultJObj != null) && (resultJObj.has("doc"))){
 
             		Object obj = resultJObj.get("doc");
 
@@ -93,27 +79,22 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             //Following code handles no solutions found scenario
             if(jArray == null){
             	jArray = new JSONArray();
-            	jArray.put(new JSONObject("{\"arr\":{\"str\":\"Your query did not yield any solutions. Please refine your search and try again.\",\"name\":\"body\"}}"));
+                JSONArray arr = new JSONArray();
+                JSONObject bodyObj = new JSONObject("{\"str\":\"Your query did not yield any solutions. Please refine your search and try again.\",\"name\":\"body\"}");
+                JSONObject titleObj = new JSONObject("{\"str\":\"Not Found\",\"name\":\"title\"}");
+                arr.put(0, bodyObj);
+                arr.put(1, titleObj);
+                jArray.put(new JSONObject().put("arr", arr));
+       
             }
+            
+            
             // ----------------------------End of additions - Chaitanya - 02/12/2016
             
-            out.println("<h1>Solutions<h1>");
-            if(jArray!=null)
-               {
-                for (int i = 0; i < jArray.length(); i++) {
-                    out.println("<h4>" + jArray.getJSONObject(i).getJSONObject("arr").getString("str") + "<h4>");
-                    out.print("</br>");
-                }
-
-            }
             
-            /*  out.println("<h4>Length  of ArrayList" + String.valueOf(len) + "</h4>");
-            out.println("<h4>Entered Error Code : " + request.getParameter("errorCode") + "</h4>");
-            out.println("</br>");
-            out.println("<h4>Entered Error Code : " + js.getJSONObject("response").getJSONObject("result").getJSONArray("doc").ge + "</h4>");*/
-            out.println("</body>");
-            out.println("</html>");
-      
+            
+            out.println("<h1>Solutions<h1>");
+            
             request.setAttribute("MySolutionsArray", jArray);
             request.setAttribute("providedError", eb.getError());
             RequestDispatcher dispatcher = request.getRequestDispatcher("/Solutions.jsp");
@@ -124,10 +105,6 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         }
               
     }
-
-
-
-
 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
